@@ -45,7 +45,7 @@ class Main {
     }
 
     public static void main(String[] args) {
-        String str = "qwertyu";
+        String str = "tree";
         System.out.println(frequencySort(str));
     }
 
