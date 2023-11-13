@@ -1,0 +1,43 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class Rotate {
+    public static String leftRotateString(String s, int d) {
+        Deque<Character> charDeque = new ArrayDeque<>();
+        for (char c : s.toCharArray()) {
+            charDeque.addLast(c);
+        }
+        for (int i = 0; i < d; i++) {
+            char firstChar = charDeque.removeFirst();
+            charDeque.addLast(firstChar);
+        }
+        StringBuilder result = new StringBuilder();
+        for (char c : charDeque) {
+            result.append(c);
+        }
+        return result.toString();
+    }
+    public static String rightRotateString(String s, int d) {
+        Deque<Character> charDeque = new ArrayDeque<>();
+        for (char c : s.toCharArray()) {
+            charDeque.addLast(c);
+        }
+
+        for (int i = 0; i < d; i++) {
+            char lastChar = charDeque.removeLast();
+            charDeque.addFirst(lastChar);
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (char c : charDeque) {
+            result.append(c);
+        }
+        return result.toString();
+    }
+    public static void main(String[] args) {
+        String s = "qwertyu";
+        int d = 2;
+        System.out.println("Left Rotation: " + leftRotateString(s, d));
+        System.out.println("Right Rotation: " + rightRotateString(s, d));
+    }
+}
