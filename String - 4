@@ -1,0 +1,52 @@
+import java.util.*;
+class Pair implements Comparable<Pair>
+{
+    int first;
+    char second;
+    Pair(int first,char second)
+    {
+        this.first = first;
+        this.second = second;
+    }
+
+    public int compareTo(Pair a)
+    {
+        if(this.first==a.first)
+            return this.second-a.second;
+        return this.first-a.first;
+    }
+
+}
+class Main {
+    public static String frequencySort(String s) {
+        HashMap<Character, Integer> mpp = new HashMap<Character, Integer>();
+
+        PriorityQueue<Pair> min_heap = new PriorityQueue<Pair>();
+
+        for (char ch : s.toCharArray()) {
+            mpp.put(ch, mpp.getOrDefault(ch, 0) + 1);
+        }
+
+        for (char m : mpp.keySet()) {
+            min_heap.offer(new Pair(mpp.get(m), m));
+        }
+
+        String ans = "";
+        while (!min_heap.isEmpty()) {
+            Pair pair = min_heap.poll();
+            int freq = pair.first;
+            char ch = pair.second;
+
+            for (int i = 0; i < freq; i++) {
+                ans += ch;
+            }
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        String str = "qwertyu";
+        System.out.println(frequencySort(str));
+    }
+
+}
